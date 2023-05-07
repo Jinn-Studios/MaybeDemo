@@ -14,21 +14,14 @@ namespace MaybeDemo.API
 
         // [HttpGet("...")] Imagine this is an API endpoint
         /*GET => /api/Person/{id:int}/MiddleName*/
-        public string? GetMiddleName(int id)
-        {
-            var middleName = _svc.GetMiddleNameForPerson(id);
-            ValidateMiddleName(middleName);
-            return middleName.Value;
-        }
+        public Maybe<string> GetMiddleName(int id)
+            => _svc.GetMiddleNameForPerson(id)
+                .Match(some: WriteMiddleNameLen, none: WriteMonadMessage);
 
-        private static void ValidateMiddleName(Maybe<string> middleName)
-        {
-            middleName.Match(
-                x => Console.WriteLine("MiddleName Len: " + x!.Length),
-                x => Console.WriteLine(x?.Message ?? "No Error Message")
-            );
+        private static void WriteMiddleNameLen(string? middleName)
+            => Console.WriteLine("MiddleName Len: " + (middleName?.Length ?? 0));
 
-            Console.WriteLine("MiddleName: " + (middleName.Value ?? "`null`"));
-        }
+        private static void WriteMonadMessage(Maybe<string>? monad)
+            => Console.WriteLine(monad?.Message ?? "No Additional Details");
     }
 }

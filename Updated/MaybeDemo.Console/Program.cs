@@ -8,12 +8,14 @@ try
     foreach (var person in ppl)
     {
         Console.WriteLine("Check MiddleName For: " + person.FirstName);
-        sdk.Get($"/api/Person/{person.Id}/MiddleName", person.Id);
+        var mid = sdk.Get($"/api/Person/{person.Id}/MiddleName", person.Id);
+        Console.WriteLine("MiddleName: " + (mid.Value ?? "`null`"));
         Console.WriteLine();
     }
 
     Console.WriteLine("Check MiddleName For: Unknown");
-    sdk.Get("/api/Person/999/MiddleName", 999); // Meant to be an ID that doesn't exist in the DB
+    var middleName = sdk.Get($"/api/Person/999/MiddleName", 999); // ID that doesn't exist in the DB
+    Console.WriteLine("MiddleName: " + (middleName.Value ?? "`null`"));
     Console.WriteLine();
 }
 catch (Exception ex)

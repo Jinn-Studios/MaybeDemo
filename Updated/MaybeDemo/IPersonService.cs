@@ -1,9 +1,7 @@
-﻿using JinnDev.Utilities.Monad;
+﻿namespace MaybeDemo.Core;
+using JinnDev.Utilities.Monad;
 
-namespace MaybeDemo.Core
+public interface IPersonService
 {
-    public interface IPersonService
-    {
-        Maybe<string> GetMiddleNameForPerson(int personId);
-    }
+    Maybe<string> GetMiddleNameForPerson(int personId);
 }

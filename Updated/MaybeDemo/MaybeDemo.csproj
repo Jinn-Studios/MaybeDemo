@@ -8,7 +8,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="JinnDev.Utilities.Monad" Version="6.0.5" />
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+			<_Parameter1>MaybeDemo.Tests</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="JinnDev.Utilities.Monad" Version="6.0.12" />
 	</ItemGroup>
 
 	<ItemGroup>

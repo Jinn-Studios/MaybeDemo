@@ -14,15 +14,9 @@ namespace MaybeDemo.Data
         }
 
         public Maybe<PersonEntity> GetPersonById(int personId)
-        {
-            try
-            {
-                return _ppl.Single(x => x.Id == personId);
-            }
-            catch (Exception ex)
-            {
-                return Maybe.None<PersonEntity>(ex, "Person Doesn't Exist With ID: " + personId);
-            }
-        }
+            => Maybe.Try<PersonEntity>(
+                   () => _ppl.Single(x => x.Id == personId),
+                   none => none.Message = "Person Doesn't Exist With ID: " + personId
+               );
     }
 }

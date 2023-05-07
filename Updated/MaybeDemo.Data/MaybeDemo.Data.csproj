@@ -5,10 +5,11 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<NoWarn>IDE1006</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="JinnDev.Utilities.Monad" Version="6.0.5" />
+		<PackageReference Include="JinnDev.Utilities.Monad" Version="6.0.12" />
 	</ItemGroup>
 
 </Project>
