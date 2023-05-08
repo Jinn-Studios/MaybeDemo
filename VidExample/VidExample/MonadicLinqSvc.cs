@@ -14,7 +14,7 @@ public class MonadicLinqSvc : IMaybeContract
     public Maybe<string> DoThingsMonadic(int itemId)
         => _mRepo.MaybeGetItem(itemId)
             .Bind(thing => FC.ValidateNum(thing.NumOrSomething)
-            .Bind(num => FC.ValidateDate(thing.SomeDateTime)
-            .Bind(dt => Maybe.Try(() => Maybe.Some(thing.SomeDateTime.Value.Year))
-            .Bind(yr => FC.FinalizeDoThings(yr, num, dt)))));
+              .Bind(num => FC.ValidateDate(thing.SomeDateTime)
+                .Bind(dt => Maybe.Try(() => Maybe.Some(thing.SomeDateTime.Value.Year))
+                  .Bind(yr => FC.FinalizeDoThings(yr, num, dt)))));
 }

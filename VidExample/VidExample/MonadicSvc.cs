@@ -18,9 +18,10 @@ public class MonadicSvc : IMaybeContract
         var xfmDate = thing.Bind(x => FC.ValidateDate(x.SomeDateTime));
         var year = thing.Bind(x => Maybe.Try(() => Maybe.Some(x.SomeDateTime.Value.Year)));
 
-        return from yr in year
+        return 
                from num in xfmNum
                from dt in xfmDate
+               from yr in year
                select FC.FinalizeDoThings(yr, num, dt).Value;
     }
 }

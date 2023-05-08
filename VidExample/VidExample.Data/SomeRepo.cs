@@ -1,10 +1,9 @@
-﻿using JinnDev.Utilities.Monad;
-using VidExample.Data.Core;
+﻿using VidExample.Data.Core;
 using VidExample.Data.Entities;
 
 namespace VidExample.Data
 {
-    public class SomeRepo : IRepo, IMaybeRepo
+    public class SomeRepo : IRepo
     {
         private readonly List<SomeEntity> _dataSource;
 
@@ -25,11 +24,5 @@ namespace VidExample.Data
                 throw; // Or return null?
             }
         }
-
-        public Maybe<SomeEntity> MaybeGetItem(int itemId)
-            => Maybe.Try<SomeEntity>(
-                   () => _dataSource.Single(x => x.Id == itemId),
-                   none => none.Message = "Person Doesn't Exist With ID: " + itemId
-               );
     }
 }

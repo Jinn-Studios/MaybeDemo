@@ -28,6 +28,6 @@ public class FC
     internal static Maybe<string> FinalizeDoThings(int year, int xfmNum, string xfmDate)
     {
         int calc = (year - 2000) / (year < 2000 ? 1 : xfmNum);
-        return $"{xfmDate} = {calc}";
+        return Maybe.Some($"{xfmDate} = {calc}");
     }
 }
