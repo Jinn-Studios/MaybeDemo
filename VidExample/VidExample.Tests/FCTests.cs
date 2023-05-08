@@ -1,7 +1,5 @@
 namespace VidExample.Tests;
 using JinnDev.Utilities.Monad;
-using VidExample.Data.Core;
-using VidExample.Data.Entities;
 using Xunit;
 
 public class FCTests

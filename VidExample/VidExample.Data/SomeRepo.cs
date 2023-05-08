@@ -16,7 +16,15 @@ namespace VidExample.Data
         {
             try
             {
-                return _dataSource.Single(x => x.Id == itemId);
+                var something = _dataSource.Where(x => x.Id == itemId);
+                something = something.Where(x => x.SomeStringVal == null || x.SomeStringVal == "" || x.SomeStringVal != null);
+                var result = something.SingleOrDefault(x => x.Id == itemId);
+                if (result == null)
+                {
+                    // Handle here, rollback, log, etc
+                    return null; // Or throw?  return new SomeEntity { Id = 0 }??
+                }
+                return result;
             }
             catch (Exception)
             {

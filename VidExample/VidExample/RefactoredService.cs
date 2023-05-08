@@ -18,7 +18,11 @@ public class RefactoredService : IContract
         try
         {
             thing = _repo.GetItem(itemId);
-            if (thing == null) return null;
+            if (thing == null)
+            {
+                // Perhaps special domain level handling.
+                return null; // Or thing that represents "not gunna happen"
+            }
         }
         catch (Exception)
         {
